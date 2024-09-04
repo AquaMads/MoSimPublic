@@ -17,6 +17,8 @@ public class DriveController : MonoBehaviour, IResettable
 
     [SerializeField] private bool flipStartingReverse;
 
+    
+
     [SerializeField] private Collider field;
 
     //Handles climbing logic

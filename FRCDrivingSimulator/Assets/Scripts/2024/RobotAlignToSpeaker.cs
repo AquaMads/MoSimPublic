@@ -33,6 +33,8 @@ public class RobotAlignToSpeaker : MonoBehaviour, IResettable
     [SerializeField] private float hardMinAngle;
     [SerializeField] private float hardMaxAngle;
 
+    [SerializeField] private  bool stowsToIntake;
+
     private Quaternion targetRotation;
 
     private bool canDoAlign = true;
@@ -166,6 +168,12 @@ public class RobotAlignToSpeaker : MonoBehaviour, IResettable
                     {
                         canDoAlign = true;
                     }
+                }
+                if(stowsToIntake=true)
+                {
+                    if(drive.isIntaking)
+                    StowShooter();
+                    
                 }
             }
             else 

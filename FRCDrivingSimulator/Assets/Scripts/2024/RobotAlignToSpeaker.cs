@@ -20,6 +20,8 @@ public class RobotAlignToSpeaker : MonoBehaviour, IResettable
 
     public float maxAimDistance = 40f;
 
+    public float ampRotationAngle= 40f;
+
     private Quaternion pivotLocalStartingRot;
 
     public bool stowedShooter = false;
@@ -35,6 +37,8 @@ public class RobotAlignToSpeaker : MonoBehaviour, IResettable
 
     [SerializeField] private  bool stowsToIntake;
 
+    
+
     private Quaternion targetRotation;
 
     private bool canDoAlign = true;
@@ -47,6 +51,10 @@ public class RobotAlignToSpeaker : MonoBehaviour, IResettable
     private bool isTrapping = false;
 
     [SerializeField] private bool robotThatRotatesUpForAmping;
+
+
+
+    
     [SerializeField] private bool robotHasUniquePassAngle;
     [SerializeField] private bool dontAllowShootingWhenStowed = true;
     [SerializeField] private bool is1678;
@@ -213,7 +221,7 @@ public class RobotAlignToSpeaker : MonoBehaviour, IResettable
 
         Quaternion startRotation = shooterPivot.transform.localRotation;
 
-        Quaternion targetRotation = Quaternion.Euler(-100f, 0f, 0f);
+        Quaternion targetRotation = Quaternion.Euler(ampRotationAngle, 0f, 0f);
 
         float elapsedTime = 0f;
         float duration = ampDuration;

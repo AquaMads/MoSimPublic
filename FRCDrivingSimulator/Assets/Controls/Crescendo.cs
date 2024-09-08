@@ -125,6 +125,15 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Special Action"",
+                    ""type"": ""Button"",
+                    ""id"": ""f6055df0-68e3-4576-a2f0-7b504d63b29c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -589,6 +598,39 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
                     ""action"": ""Climb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c846b6f-cb8e-4bb3-a0ca-6ab29787cb18"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Special Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4fbb85e8-939e-40bc-b2de-5237bcd92191"",
+                    ""path"": ""<Keyboard>/#(I)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Special Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b21bd43d-57eb-417e-87c9-10f923b1935c"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Special Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -636,6 +678,7 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
         m_Robot_MoveCamera = m_Robot.FindAction("MoveCamera", throwIfNotFound: true);
         m_Robot_SourceDrop = m_Robot.FindAction("SourceDrop", throwIfNotFound: true);
         m_Robot_Climb = m_Robot.FindAction("Climb", throwIfNotFound: true);
+        m_Robot_SpecialAction = m_Robot.FindAction("Special Action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -708,6 +751,7 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
     private readonly InputAction m_Robot_MoveCamera;
     private readonly InputAction m_Robot_SourceDrop;
     private readonly InputAction m_Robot_Climb;
+    private readonly InputAction m_Robot_SpecialAction;
     public struct RobotActions
     {
         private @Crescendo m_Wrapper;
@@ -723,6 +767,7 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
         public InputAction @MoveCamera => m_Wrapper.m_Robot_MoveCamera;
         public InputAction @SourceDrop => m_Wrapper.m_Robot_SourceDrop;
         public InputAction @Climb => m_Wrapper.m_Robot_Climb;
+        public InputAction @SpecialAction => m_Wrapper.m_Robot_SpecialAction;
         public InputActionMap Get() { return m_Wrapper.m_Robot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -765,6 +810,9 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
             @Climb.started += instance.OnClimb;
             @Climb.performed += instance.OnClimb;
             @Climb.canceled += instance.OnClimb;
+            @SpecialAction.started += instance.OnSpecialAction;
+            @SpecialAction.performed += instance.OnSpecialAction;
+            @SpecialAction.canceled += instance.OnSpecialAction;
         }
 
         private void UnregisterCallbacks(IRobotActions instance)
@@ -802,6 +850,9 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
             @Climb.started -= instance.OnClimb;
             @Climb.performed -= instance.OnClimb;
             @Climb.canceled -= instance.OnClimb;
+            @SpecialAction.started -= instance.OnSpecialAction;
+            @SpecialAction.performed -= instance.OnSpecialAction;
+            @SpecialAction.canceled -= instance.OnSpecialAction;
         }
 
         public void RemoveCallbacks(IRobotActions instance)
@@ -850,5 +901,6 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
         void OnMoveCamera(InputAction.CallbackContext context);
         void OnSourceDrop(InputAction.CallbackContext context);
         void OnClimb(InputAction.CallbackContext context);
+        void OnSpecialAction(InputAction.CallbackContext context);
     }
 }

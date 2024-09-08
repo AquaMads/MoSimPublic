@@ -118,9 +118,18 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Climb"",
+                    ""name"": ""ClimbUP"",
                     ""type"": ""Button"",
                     ""id"": ""72acccaf-ef5d-4e3b-9ac1-47beead21b4b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ClimbDOWN"",
+                    ""type"": ""Button"",
+                    ""id"": ""7da12e1d-81b8-4f1b-875d-89f080c09252"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -573,7 +582,7 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controls 1"",
-                    ""action"": ""Climb"",
+                    ""action"": ""ClimbUP"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -584,7 +593,7 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controls 1"",
-                    ""action"": ""Climb"",
+                    ""action"": ""ClimbUP"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -595,7 +604,7 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controls 2"",
-                    ""action"": ""Climb"",
+                    ""action"": ""ClimbUP"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -629,6 +638,17 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Special Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f17cd72d-35e0-4eb8-86bd-8b93e8a67d4a"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ClimbDOWN"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -677,7 +697,8 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
         m_Robot_Menu = m_Robot.FindAction("Menu", throwIfNotFound: true);
         m_Robot_MoveCamera = m_Robot.FindAction("MoveCamera", throwIfNotFound: true);
         m_Robot_SourceDrop = m_Robot.FindAction("SourceDrop", throwIfNotFound: true);
-        m_Robot_Climb = m_Robot.FindAction("Climb", throwIfNotFound: true);
+        m_Robot_ClimbUP = m_Robot.FindAction("ClimbUP", throwIfNotFound: true);
+        m_Robot_ClimbDOWN = m_Robot.FindAction("ClimbDOWN", throwIfNotFound: true);
         m_Robot_SpecialAction = m_Robot.FindAction("Special Action", throwIfNotFound: true);
     }
 
@@ -750,7 +771,8 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
     private readonly InputAction m_Robot_Menu;
     private readonly InputAction m_Robot_MoveCamera;
     private readonly InputAction m_Robot_SourceDrop;
-    private readonly InputAction m_Robot_Climb;
+    private readonly InputAction m_Robot_ClimbUP;
+    private readonly InputAction m_Robot_ClimbDOWN;
     private readonly InputAction m_Robot_SpecialAction;
     public struct RobotActions
     {
@@ -766,7 +788,8 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
         public InputAction @Menu => m_Wrapper.m_Robot_Menu;
         public InputAction @MoveCamera => m_Wrapper.m_Robot_MoveCamera;
         public InputAction @SourceDrop => m_Wrapper.m_Robot_SourceDrop;
-        public InputAction @Climb => m_Wrapper.m_Robot_Climb;
+        public InputAction @ClimbUP => m_Wrapper.m_Robot_ClimbUP;
+        public InputAction @ClimbDOWN => m_Wrapper.m_Robot_ClimbDOWN;
         public InputAction @SpecialAction => m_Wrapper.m_Robot_SpecialAction;
         public InputActionMap Get() { return m_Wrapper.m_Robot; }
         public void Enable() { Get().Enable(); }
@@ -807,9 +830,12 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
             @SourceDrop.started += instance.OnSourceDrop;
             @SourceDrop.performed += instance.OnSourceDrop;
             @SourceDrop.canceled += instance.OnSourceDrop;
-            @Climb.started += instance.OnClimb;
-            @Climb.performed += instance.OnClimb;
-            @Climb.canceled += instance.OnClimb;
+            @ClimbUP.started += instance.OnClimbUP;
+            @ClimbUP.performed += instance.OnClimbUP;
+            @ClimbUP.canceled += instance.OnClimbUP;
+            @ClimbDOWN.started += instance.OnClimbDOWN;
+            @ClimbDOWN.performed += instance.OnClimbDOWN;
+            @ClimbDOWN.canceled += instance.OnClimbDOWN;
             @SpecialAction.started += instance.OnSpecialAction;
             @SpecialAction.performed += instance.OnSpecialAction;
             @SpecialAction.canceled += instance.OnSpecialAction;
@@ -847,9 +873,12 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
             @SourceDrop.started -= instance.OnSourceDrop;
             @SourceDrop.performed -= instance.OnSourceDrop;
             @SourceDrop.canceled -= instance.OnSourceDrop;
-            @Climb.started -= instance.OnClimb;
-            @Climb.performed -= instance.OnClimb;
-            @Climb.canceled -= instance.OnClimb;
+            @ClimbUP.started -= instance.OnClimbUP;
+            @ClimbUP.performed -= instance.OnClimbUP;
+            @ClimbUP.canceled -= instance.OnClimbUP;
+            @ClimbDOWN.started -= instance.OnClimbDOWN;
+            @ClimbDOWN.performed -= instance.OnClimbDOWN;
+            @ClimbDOWN.canceled -= instance.OnClimbDOWN;
             @SpecialAction.started -= instance.OnSpecialAction;
             @SpecialAction.performed -= instance.OnSpecialAction;
             @SpecialAction.canceled -= instance.OnSpecialAction;
@@ -900,7 +929,8 @@ public partial class @Crescendo: IInputActionCollection2, IDisposable
         void OnMenu(InputAction.CallbackContext context);
         void OnMoveCamera(InputAction.CallbackContext context);
         void OnSourceDrop(InputAction.CallbackContext context);
-        void OnClimb(InputAction.CallbackContext context);
+        void OnClimbUP(InputAction.CallbackContext context);
+        void OnClimbDOWN(InputAction.CallbackContext context);
         void OnSpecialAction(InputAction.CallbackContext context);
     }
 }

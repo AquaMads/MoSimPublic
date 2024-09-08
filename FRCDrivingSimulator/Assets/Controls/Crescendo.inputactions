@@ -96,9 +96,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Climb",
+                    "name": "ClimbUP",
                     "type": "Button",
                     "id": "72acccaf-ef5d-4e3b-9ac1-47beead21b4b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ClimbDOWN",
+                    "type": "Button",
+                    "id": "7da12e1d-81b8-4f1b-875d-89f080c09252",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -551,7 +560,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controls 1",
-                    "action": "Climb",
+                    "action": "ClimbUP",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -562,7 +571,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controls 1",
-                    "action": "Climb",
+                    "action": "ClimbUP",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -573,7 +582,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controls 2",
-                    "action": "Climb",
+                    "action": "ClimbUP",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -607,6 +616,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Special Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f17cd72d-35e0-4eb8-86bd-8b93e8a67d4a",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ClimbDOWN",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

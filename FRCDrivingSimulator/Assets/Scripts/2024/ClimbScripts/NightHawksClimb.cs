@@ -48,15 +48,17 @@ public class NightHawksClimb : MonoBehaviour, IResettable
 
     private IEnumerator ClimbSequence() 
     {
-        StartCoroutine(shooter.ShooterToPosition(Quaternion.Euler(35, 0, 0), false));
-        climber.targetRotation = Quaternion.Euler(40, 0, 0);
+        StartCoroutine(shooter.ShooterToPosition(Quaternion.Euler(40, 0, 0), false));
+        climber.targetRotation = Quaternion.Euler(-100f, 0f, 0f);
         yield return new WaitForSeconds(0.5f);
         prepped = true;
     }
 
     private void HangSequence() 
     {
-        climber.targetRotation = Quaternion.Euler(-60, 0, 0);
+        //climber.targetRotation = Quaternion.Euler(0, 0, 0);
+
+        StartCoroutine(shooter.ShooterToPosition(Quaternion.Euler(-60, 0, 0), false));
     }
 
     public void OnClimb(InputAction.CallbackContext ctx)
@@ -67,7 +69,7 @@ public class NightHawksClimb : MonoBehaviour, IResettable
     public void OnHang(InputAction.CallbackContext ctx)
     {
         hang= ctx.action.triggered;
-
+        StartCoroutine(shooter.ShooterToPosition(Quaternion.Euler(-60, 0, 0), false));
     }
     private IEnumerator WaitToEnable() 
     {
